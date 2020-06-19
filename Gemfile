@@ -55,3 +55,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Use devise for user authentication
 gem 'devise'
+
+# Use devise_pam_authenticatable2 for PAM integration
+gem 'devise_pam_authenticatable2', '~> 9.2'
