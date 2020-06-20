@@ -346,9 +346,8 @@ Devise.setup do |config|
   config.pam_authentication     = true
   config.usernamefield          = nil
   config.emailfield             = 'email'
-  # config.check_at_sign = false
   config.check_at_sign          = true
-  config.pam_default_suffix = 'pam'
+  config.pam_default_suffix     = 'pam'
   config.pam_default_service    = 'rpam'
   config.pam_controlled_service = nil
 end
