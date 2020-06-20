@@ -58,3 +58,6 @@ gem 'devise'
 
 # Use devise_pam_authenticatable2 for PAM integration
 gem 'devise_pam_authenticatable2', '~> 9.2'
+
+gem 'bootstrap', '~> 4.5.0'
+gem 'devise-bootstrap-views', '~> 1.0'
