@@ -7,6 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 if Rails.env.development?
-  User.create!(email: 'admin@example.com', password: 'admin123', password_confirmation: 'admin123')
-  User.create!(email: 'user@example.com', password: 'password', password_confirmation: 'password')
+  User.all.each do |user|
+    for _i in 0..(rand(3..7))
+      user.resources.create!(name: "resource #{rand(0..100)}")
+    end
+  end
 end
