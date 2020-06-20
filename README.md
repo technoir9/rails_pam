@@ -33,3 +33,8 @@
     $ rails s
     ```
 You should now be able to open the application in your browser by visiting http://localhost:3000/.
+
+## Usage
+
+To sign in using system user credentials, add @pam at the end of the user name as email on login form.
+For example, if your user's name if `fred`, then fill the email field as `fred@pam`.
