@@ -1,5 +1,50 @@
 # frozen_string_literal: true
 
+module Devise
+  mattr_accessor :pam_authentication
+  @@pam_authentication = false
+  mattr_accessor :pam_controlled_service
+  @@pam_controlled_service = nil
+
+  mattr_accessor :check_at_sign
+  @@check_at_sign = false
+
+  mattr_accessor :ldap_authentication
+  @@ldap_authentication = false
+  mattr_accessor :ldap_host
+  @@ldap_host = nil
+  mattr_accessor :ldap_port
+  @@ldap_port = nil
+  mattr_accessor :ldap_method
+  @@ldap_method = nil
+  mattr_accessor :ldap_base
+  @@ldap_base = nil
+  mattr_accessor :ldap_uid
+  @@ldap_uid = nil
+  mattr_accessor :ldap_mail
+  @@ldap_mail = nil
+  mattr_accessor :ldap_bind_dn
+  @@ldap_bind_dn = nil
+  mattr_accessor :ldap_password
+  @@ldap_password = nil
+  mattr_accessor :ldap_tls_no_verify
+  @@ldap_tls_no_verify = false
+  mattr_accessor :ldap_search_filter
+  @@ldap_search_filter = nil
+  mattr_accessor :ldap_uid_conversion_enabled
+  @@ldap_uid_conversion_enabled = false
+  mattr_accessor :ldap_uid_conversion_search
+  @@ldap_uid_conversion_search = nil
+  mattr_accessor :ldap_uid_conversion_replace
+  @@ldap_uid_conversion_replace = nil
+
+  class Strategies::PamAuthenticatable
+    def valid?
+      super && ::Devise.pam_authentication
+    end
+  end
+end
+
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -70,7 +115,7 @@ Devise.setup do |config|
   # given strategies, for example, `config.http_authenticatable = [:database]` will
   # enable it only for database authentication. The supported strategies are:
   # :database      = Support basic authentication with authentication key + password
-  # config.http_authenticatable = false
+  config.http_authenticatable = [:pam]
 
   # If 401 status code should be returned for AJAX requests. True by default.
   # config.http_authenticatable_on_xhr = true
@@ -296,4 +341,14 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
+
+
+  config.pam_authentication     = true
+  config.usernamefield          = nil
+  config.emailfield             = 'email'
+  # config.check_at_sign = false
+  config.check_at_sign          = true
+  config.pam_default_suffix = 'pam'
+  config.pam_default_service    = 'rpam'
+  config.pam_controlled_service = nil
 end

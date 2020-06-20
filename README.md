@@ -1,9 +1,15 @@
 # Linux PAM
 
+**Note:** this works correctly only on Linux.
+
 ## Prerequisites
 
 * Ruby 2.7.1
 * Postgresql >= 9.0
+* `libpam0g-dev` installed for PAM. To install it on Ubuntu run:
+    ```
+    $ sudo apt-get install libpam0g-dev
+    ```
 
 ## Configuration
 
